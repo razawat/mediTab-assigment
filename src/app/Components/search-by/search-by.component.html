@@ -1,8 +1,8 @@
 <main>
-    <h1 class="bg-amber-200 px-2 py-1 rounded">Search by</h1>
-    <section class="flex flex-col gap-3 bg-sky-100 rounded py-5">
-        <!-- Optimized approach - a common component can be made out here -->
-        <div class="flex flex-row justify-around">
+  <h1 class="bg-amber-200 px-2 py-1 rounded">Search by</h1>
+  <section class="flex flex-col gap-4 bg-sky-100 rounded py-5">
+    <!-- Optimized approach - a common component can be made out here -->
+    <!-- <div class="flex flex-row justify-around">
             <p class="text-sm">\</p>
             <span class="text-sm"> First name</span>
             <input class="text-sm" type="text"/>
@@ -21,6 +21,18 @@
             <p class="text-sm">$</p>
             <span class="text-sm"> Address </span>
             <input class="text-sm" type="text"/>
-        </div>
-    </section>
+        </div> -->
+    <div class="flex flex-row justify-around" *ngFor="let list of searchFields">
+      <p class="text-sm">{{ list.symbol }}</p>
+      <span class="text-sm"> {{ list.labelName }}</span>
+      <input
+        class="text-sm"
+        type="text"
+        (keyup.enter)="handleSearchOnEnter(list.symbol,$event)"
+        [(ngModel)]="list.inputValue"
+        [name]="'input_' + list.labelName"
+        autocomplete="off"
+      />
+    </div>
+  </section>
 </main>
