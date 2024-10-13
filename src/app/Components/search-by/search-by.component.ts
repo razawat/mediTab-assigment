@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ComponentCommunicationService } from 'src/app/Services/component-communication.service';
-
+import {
+  SEARCH_INPUT_LABELS,
+  SEARCH_INPUT_SYMBOLS,
+} from '../../Util/constData';
 @Component({
   selector: 'app-search-by',
   templateUrl: './search-by.component.html',
@@ -10,10 +13,26 @@ import { ComponentCommunicationService } from 'src/app/Services/component-commun
 export class SearchByComponent implements OnInit, OnDestroy {
   //Search fields are configurable
   searchFields = [
-    { symbol: '\\', labelName: 'First name', inputValue: '' },
-    { symbol: '@', labelName: 'Last name', inputValue: '' },
-    { symbol: '#', labelName: 'Chart no', inputValue: '' },
-    { symbol: '$', labelName: 'Address 1', inputValue: '' },
+    {
+      symbol: SEARCH_INPUT_SYMBOLS.backslash,
+      labelName: SEARCH_INPUT_LABELS.firstName,
+      inputValue: '',
+    },
+    {
+      symbol: SEARCH_INPUT_SYMBOLS.atTheRate,
+      labelName: SEARCH_INPUT_LABELS.lastName,
+      inputValue: '',
+    },
+    {
+      symbol: SEARCH_INPUT_SYMBOLS.hash,
+      labelName: SEARCH_INPUT_LABELS.chartNo,
+      inputValue: '',
+    },
+    {
+      symbol: SEARCH_INPUT_SYMBOLS.hash,
+      labelName: SEARCH_INPUT_LABELS.add,
+      inputValue: '',
+    },
   ];
   searchValueSubscriber: Subscription = new Subscription();
   clearInputFieldSubscriber: Subscription = new Subscription();
