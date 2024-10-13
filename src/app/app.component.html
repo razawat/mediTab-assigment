@@ -1,14 +1,16 @@
 <main class="bg-sky-300 m-2 p-2 rounded">
   <h1>Search Patient</h1>
-  <div class="flex flex-row flex-wrap justify-between m-4">
-    <div class="w-3/12">
+  <!-- Search, SearchBy & Result -->
+  <div class="flex flex-row flex-wrap justify-center md:justify-between m-4 gap-5">
+    <div class="w-full md:w-3/12">
       <app-search-by />
     </div>
-    <div class="flex flex-col w-8/12 gap-5">
+    <div class="flex flex-col w-full md:w-8/12 gap-5">
       <app-search />
       <app-results />
     </div>
   </div>
+  <!-- Bottom Non-functional button -->
   <div class="flex flex-wrap justify-end gap-4 bg-blue-100 p-2 border-2 border-slate-100 ">
     <button class="bg-violet-300 hover:font-bold px-2 py-1 rounded">OK</button>
     <button class="bg-violet-300 hover:font-bold px-2 py-1 rounded">Cancel</button>

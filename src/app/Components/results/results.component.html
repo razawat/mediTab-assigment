@@ -12,14 +12,14 @@
       <tbody>
         <tr *ngFor="let dataSource of tableDataSource">
           <td
-            class="border border-blue-700 px-2"
+            class="border border-blue-700 sm:px-2"
             *ngFor="let col of getColumns(dataSource)"
           >
             {{ col }}
           </td>
         </tr>
         <tr *ngIf="tableDataSource.length == 0">
-          <td [attr.colspan]="tableColumn.length"  class="border border-blue-700 px-2 text-center">Data Not Found</td>
+          <td [attr.colspan]="tableColumn.length"  class="border border-blue-700 sm:px-2 text-center">Data Not Found</td>
         </tr>
       </tbody>
     </table>
