@@ -7,7 +7,7 @@ import { ComponentCommunicationService } from 'src/app/Services/component-commun
   templateUrl: './search-by.component.html',
   styleUrls: ['./search-by.component.css'],
 })
-export class SearchByComponent implements OnInit, OnDestroy{
+export class SearchByComponent implements OnInit, OnDestroy {
   //Search fields are configurable
   searchFields = [
     { symbol: '\\', labelName: 'First name', inputValue: '' },
@@ -15,42 +15,66 @@ export class SearchByComponent implements OnInit, OnDestroy{
     { symbol: '#', labelName: 'Chart no', inputValue: '' },
     { symbol: '$', labelName: 'Address 1', inputValue: '' },
   ];
-  searchValueSubscriber:Subscription = new Subscription();
+  searchValueSubscriber: Subscription = new Subscription();
+  clearInputFieldSubscriber: Subscription = new Subscription();
 
   constructor(private componentCommunication: ComponentCommunicationService) {}
 
   ngOnInit(): void {
-    this.searchValueSubscriber = this.componentCommunication.searchToSearchBy.subscribe((value:string) => {
-      console.log(value);
-      let inputValue:string = '';
-      for(let i=value.length-1;i>=0;i--) {
-        if((value[i] >= 'A' && value[i] <= 'Z') || (value[i] >= 'a' && value[i] <= 'z')) {
-          inputValue+=value;
-        }
-        else {
-          this.findInputBySymbol(inputValue,value[i]);
-          break;
-        }
-      }
-    });
+    this.handleCustomSubscriber();
   }
 
   ngOnDestroy(): void {
     this.searchValueSubscriber.unsubscribe();
+    this.clearInputFieldSubscriber.unsubscribe();
   }
 
-  // Function to get triggered to pressing enter key
+  // Function to get triggered when pressing enter key
   handleSearchOnEnter(symbol: string, event: Event) {
     const inputValue = (event.target as HTMLInputElement).value;
     console.log('Hello:', symbol, inputValue);
     this.componentCommunication.searchByToSearch.next(`${symbol}${inputValue}`);
   }
 
-  findInputBySymbol(value:string,symbol:string) {
-    console.log('In find By Symbol',value,symbol);
-    for(let i=0;i<this.searchFields.length;i++) {
-      if(symbol === this.searchFields[i].symbol) {
-        this.searchFields[i].inputValue += value;
+  // Handling custom subscription for subject
+  handleCustomSubscriber() {
+    // Filling the input fields as per their symbols
+    this.searchValueSubscriber =
+      this.componentCommunication.searchToSearchBy.subscribe(
+        (value: string) => {
+          console.log(value);
+          //debugger
+          let inputValue: string = '';
+          for (let i = value.length - 1; i >= 0; i--) {
+            const char = value[i];
+            // Use regex to check if the character is a letter, digit, or space
+            if (/^[a-zA-Z0-9 ]$/.test(char)) {
+              inputValue += char;
+            } else {
+              this.findInputBySymbol(
+                inputValue.split('').reverse().join(''),
+                char
+              );
+              break;
+            }
+          }
+        }
+      );
+
+    // Clearing out the input fields
+    this.clearInputFieldSubscriber =
+      this.componentCommunication.clearSearchToInputs.subscribe(() => {
+        for (let fields of this.searchFields) {
+          this.findInputBySymbol('', fields.symbol);
+        }
+      });
+  }
+
+  findInputBySymbol(value: string, symbol: string) {
+    console.log('In find By Symbol', value, symbol);
+    for (let i = 0; i < this.searchFields.length; i++) {
+      if (symbol === this.searchFields[i].symbol) {
+        this.searchFields[i].inputValue = value;
         break;
       }
     }

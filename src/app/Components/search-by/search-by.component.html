@@ -1,27 +1,6 @@
 <main>
   <h1 class="bg-amber-200 px-2 py-1 rounded">Search by</h1>
   <section class="flex flex-col gap-4 bg-sky-100 rounded py-5">
-    <!-- Optimized approach - a common component can be made out here -->
-    <!-- <div class="flex flex-row justify-around">
-            <p class="text-sm">\</p>
-            <span class="text-sm"> First name</span>
-            <input class="text-sm" type="text"/>
-        </div>
-        <div class="flex flex-row justify-around">
-            <p class="text-sm">&#64;</p>
-            <span class="text-sm"> Last name</span>
-            <input class="text-sm" type="text"/>
-        </div>
-        <div class="flex flex-row justify-around">
-            <p class="text-sm">#</p>
-            <span class="text-sm"> Chart no</span>
-            <input class="text-sm" type="text"/>
-        </div>
-        <div class="flex flex-row justify-around">
-            <p class="text-sm">$</p>
-            <span class="text-sm"> Address </span>
-            <input class="text-sm" type="text"/>
-        </div> -->
     <div class="flex flex-row justify-around" *ngFor="let list of searchFields">
       <p class="text-sm">{{ list.symbol }}</p>
       <span class="text-sm"> {{ list.labelName }}</span>

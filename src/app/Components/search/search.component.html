@@ -5,7 +5,7 @@
   </header>
   <section class="rounded py-5 flex justify-around bg-sky-100">
     <input type="text" class="w-4/5" [(ngModel)]="searchInput" (keyup)="handleSearchValue($event)"/>
-    <button class="bg-violet-300 hover:font-bold px-2 py-1 rounded">Search</button>
-    <button class="bg-violet-300 hover:font-bold px-2 py-1 rounded">Clear</button>
+    <button class="bg-violet-300 hover:font-bold px-2 py-1 rounded" (click)="handleSearchButton()">Search</button>
+    <button class="bg-violet-300 hover:font-bold px-2 py-1 rounded" (click)="handleClearButton()">Clear</button>
   </section>
 </main>
