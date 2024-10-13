@@ -37,8 +37,10 @@ export class SearchComponent implements OnInit, OnDestroy {
   // function to clear the all inputs fields
   handleClearButton() {
     this.searchInput = '';
-    this.componentCommunication.clearSearchToInputs.next('');
+    this.componentCommunication.clearFields.next('');
   }
 
-  handleSearchButton() {}
+  handleSearchButton() {
+    this.componentCommunication.searchTable.next(this.searchInput);
+  }
 }

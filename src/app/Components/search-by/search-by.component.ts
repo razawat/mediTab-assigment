@@ -14,22 +14,22 @@ export class SearchByComponent implements OnInit, OnDestroy {
   //Search fields are configurable
   searchFields = [
     {
-      symbol: SEARCH_INPUT_SYMBOLS.backslash,
+      symbol: SEARCH_INPUT_SYMBOLS.firstNameSymbol,
       labelName: SEARCH_INPUT_LABELS.firstName,
       inputValue: '',
     },
     {
-      symbol: SEARCH_INPUT_SYMBOLS.atTheRate,
+      symbol: SEARCH_INPUT_SYMBOLS.lastNameSymbol,
       labelName: SEARCH_INPUT_LABELS.lastName,
       inputValue: '',
     },
     {
-      symbol: SEARCH_INPUT_SYMBOLS.hash,
+      symbol: SEARCH_INPUT_SYMBOLS.charNoSymbol,
       labelName: SEARCH_INPUT_LABELS.chartNo,
       inputValue: '',
     },
     {
-      symbol: SEARCH_INPUT_SYMBOLS.hash,
+      symbol: SEARCH_INPUT_SYMBOLS.addSymbol,
       labelName: SEARCH_INPUT_LABELS.add,
       inputValue: '',
     },
@@ -82,7 +82,7 @@ export class SearchByComponent implements OnInit, OnDestroy {
 
     // Clearing out the input fields
     this.clearInputFieldSubscriber =
-      this.componentCommunication.clearSearchToInputs.subscribe(() => {
+      this.componentCommunication.clearFields.subscribe(() => {
         for (let fields of this.searchFields) {
           this.findInputBySymbol('', fields.symbol);
         }

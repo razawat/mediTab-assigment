@@ -6,11 +6,11 @@ export const SEARCH_INPUT_LABELS = {
 };
 
 export const SEARCH_INPUT_SYMBOLS = {
-  backslash: '\\',
-  atTheRate: '@',
-  hash: '#',
-  dollar: '$',
-  percentage: '%',
+  firstNameSymbol: '\\',
+  lastNameSymbol: '@',
+  charNoSymbol: '#',
+  addSymbol: '$',
+//   percentage: '%',
 };
 
 export const TABLE_DATA = [
@@ -18,7 +18,7 @@ export const TABLE_DATA = [
     firstName: 'John',
     lastName: 'Doe',
     chartNo: '12345',
-    add: '123 Elm Street',
+    add: '123 Lane Street',
   },
   {
     firstName: 'Jane',

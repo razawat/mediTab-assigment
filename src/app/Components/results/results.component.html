@@ -18,6 +18,9 @@
             {{ col }}
           </td>
         </tr>
+        <tr *ngIf="tableDataSource.length == 0">
+          <td [attr.colspan]="tableColumn.length"  class="border border-blue-700 px-2 text-center">Data Not Found</td>
+        </tr>
       </tbody>
     </table>
   </section>
